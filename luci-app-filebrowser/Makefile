@@ -21,4 +21,10 @@ endef
 
 include $(TOPDIR)/feeds/luci/luci.mk
 
+LUCI_TITLE:=FileBrowser - 简体中文翻译
+LUCI_DEPENDS:=+luci-app-filebrowser
+
+# 引入语言包构建机制
+include $(TOPDIR)/feeds/luci/luci-lang.mk
+
 # call BuildPackage - OpenWrt buildroot signature
