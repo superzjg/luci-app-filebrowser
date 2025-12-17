@@ -71,23 +71,16 @@ jobs:
           key: sdk-${{ matrix.arch }}-${{ matrix.sdk }}
           
           
-      - name: 强制设置脚本权限
+      - name: 设置脚本权限
         run: |
           chmod 0755 luci-app-filebrowser/root/etc/init.d/filebrowser
 
-# # 在你的工作流中，在Building packages步骤前添加
-#       - name: 清理构建缓存
-#         run: |
-#           cd /opt/openwrt-sdk-${{ matrix.arch }}-${{ matrix.sdk }} || true
-#           make package/luci-app-filebrowser/clean
-#           rm -rf tmp/
-          
       - name: Building packages
         uses: openwrt/gh-action-sdk@main
         env:
           ARCH: ${{ matrix.arch }}-${{ matrix.sdk }}
           FEEDNAME: packages_ci
-          PACKAGES: luci-app-filebrowser luci-i18n-filebrowser-zh-cn
+          PACKAGES: luci-app-filebrowser
           #NO_DEFAULT_FEEDS: 1
           NO_REFRESH_CHECK: 1
           NO_SHFMT_CHECK: 1
