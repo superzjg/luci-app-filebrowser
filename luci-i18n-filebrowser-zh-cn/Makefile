@@ -1,3 +1,8 @@
+#  定义包的基本信息（必须）
+PKG_NAME:=luci-i18n-filebrowser-zh-cn
+PKG_VERSION:=20210205
+PKG_RELEASE:=1
+
 # 关键：第一行必须先引入 luci.mk，它会处理版本继承等逻辑
 include $(TOPDIR)/feeds/luci/luci.mk
 
