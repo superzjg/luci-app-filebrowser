@@ -73,7 +73,7 @@ jobs:
           
       - name: 强制设置脚本权限
         run: |
-          chmod 0755 root/etc/init.d/filebrowser
+          chmod 0755 luci-app-filebrowser/root/etc/init.d/filebrowser
 
           
       - name: Building packages
