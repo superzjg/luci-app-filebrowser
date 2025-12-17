@@ -78,7 +78,7 @@ jobs:
 # 在你的工作流中，在Building packages步骤前添加
       - name: 清理构建缓存
         run: |
-          cd /opt/openwrt-sdk-${{ matrix.arch }}-${{ matrix.sdk }}
+          cd /opt/openwrt-sdk-${{ matrix.arch }}-${{ matrix.sdk }} || true
           make package/luci-app-filebrowser/clean
           rm -rf tmp/
           
