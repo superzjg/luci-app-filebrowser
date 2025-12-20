@@ -5,7 +5,7 @@ s = m:section(TypedSection, "global", translate("Global Settings"))
 s.anonymous = true
 s.addremove = false
 
-o = s:option(Flag, "enable", translate("Enable"), translate("<b>用户 admin 的初始密码是随机密码，首次启动时出现在日志中；</b>v2.32.1之前版本是 admin。<br>初始语言为英文 (可在Settings - Profile Settings - Language选择其他语言，点击 UPDATE 更改)"))
+o = s:option(Flag, "enable", translate("Enable"), translate("<b>The initial password for user admin is a randomly generated password, which appears in the logs upon first startup;</b> for versions prior to v2.32.1, it is admin.<br>The default language is English (other languages can be selected in Settings - Profile Settings - Language, click UPDATE to change)"))
 o.rmempty = false
 
 o = s:option(Value, "address", translate("Listen address"))
@@ -17,26 +17,26 @@ o.datatype = "port"
 o.default = 8088
 o.rmempty = false
 
-o = s:option(Value, "database", translate("Database path"), translate("路径不要有空格；若文件不可用会自动创建（包含初始密码等配置信息）"))
+o = s:option(Value, "database", translate("Database path"), translate("Paths should not contain spaces; if the file is unavailable, it will be automatically created (including configuration information such as the initial password)"))
 o.default = "/etc/filebrowser.db"
 o.rmempty = false
 
-o = s:option(Flag, "ssl", translate("启用 SSL"), translate("开启 HTTPS"))
+o = s:option(Flag, "ssl", translate("Enable SSL"), translate("Access via HTTPS"))
 o.default = "0"
 
-o = s:option(Value, "ssl_cert", translate("SSL cert"), translate("SSL证书文件路径"))
+o = s:option(Value, "ssl_cert", translate("SSL cert"), translate("SSL certificate file path"))
 o.datatype = "file"
 o:depends("ssl", "1")
 
-o = s:option(Value, "ssl_key", translate("SSL key"), translate("SSL密钥文件路径"))
+o = s:option(Value, "ssl_key", translate("SSL key"), translate("SSL key file path"))
 o.datatype = "file"
 o:depends("ssl", "1")
 
-o = s:option(Value, "root_path", translate("Root path"), translate("指向一个路径，可在web界面访问你的文件，默认为根目录 /"))
+o = s:option(Value, "root_path", translate("Root path"), translate("Point to a path to access your files in the web interface, default is root directory /"))
 o.default = "/"
 o.rmempty = false
 
-o = s:option(Value, "extrFlag", translate("额外参数"), translate("要确保当前版本支持。例如：--disableExec=false 为开启命令执行功能（从v2.33.8默认禁用）"))
+o = s:option(Value, "extrFlag", translate("Other flags"), translate("Ensure that the current version supports. For example: --disableExec=false enables built-in shell (disabled by default since v2.33.8)"))
 
 o = s:option(Value, "executable_directory", translate("Executable directory"), translate("The file size is large, requiring at least 32M space. It is recommended to insert a usb flash drive or hard disk, or use it in the tmp directory<br />For example, /mnt/sda1<br />For example, /tmp"))
 o.default = "/tmp"
@@ -48,8 +48,8 @@ o.inputstyle = "apply"
 o.btnclick = "downloadClick(this);"
 o.id = "download_btn"
 
-o = s:option(DummyValue, "", translate("<strong>下载/安装 注意事项：</strong>"), translate("解决办法：<br />1、跳转<a href=\'https://github.com/filebrowser/filebrowser/releases' target=\'_blank\'>到官方仓库releases页</a>用下载软件下载相应架构的压缩包，再解压把filebrowser存储到指定的目录。<br />2、若无U盘/硬盘等外置存储可用，可尝试<a href=\'https://github.com/upx/upx/releases' target=\'_blank\'>下载upx压缩可执行文件</a>节省空间</a>（但会消耗更多RAM）。"))
-o.default = "上述下载按钮依赖软件包 wget-ssl ；与 GitHub 的网络连接要可靠快速，否则易报错超时"
+o = s:option(DummyValue, "", translate("<strong>Download/Installation Notes:</strong>"), translate("Solution: <br />1. Go to the <a href='https://github.com/filebrowser/filebrowser/releases' target='_blank'>official repository releases page</a>, use a download manager to download the compressed package for the corresponding architecture, then extract it and store the filebrowser executable in the specified directory.<br />2. If no external storage (such as a USB drive or hard disk) is available, you can try <a href='https://github.com/upx/upx/releases' target='_blank'>downloading UPX to compress the executable</a> to save space (but this will consume more RAM)."))
+o.default = "The download button above depends on the package wget-ssl . A reliable and fast network connection to GitHub is required; otherwise, it is prone to report errors or timeouts"
 
 m:append(Template("filebrowser/log"))
 
