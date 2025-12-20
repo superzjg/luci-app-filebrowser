@@ -19,20 +19,32 @@ msgstr "全局设置"
 msgid "Enable"
 msgstr "启用"
 
+msgid "<b>The initial password for user admin is a randomly generated password, which appears in the logs upon first startup;</b> for versions prior to v2.32.1, it is admin.<br>The default language is English (other languages can be selected in Settings - Profile Settings - Language, click UPDATE to change)"
+msgstr "<b>用户 admin 的初始密码是随机密码，首次启动时出现在日志中；</b>v2.32.1之前版本是 admin。<br>初始语言为英文 (可在Settings - Profile Settings - Language选择其他语言，点击 UPDATE 更改)"
+
 msgid "Listen address"
 msgstr "监听地址"
 
 msgid "Listen port"
 msgstr "监听端口"
 
-msgid "Initial username"
-msgstr "初始账户"
+msgid "Paths should not contain spaces; if the file is unavailable, it will be automatically created (including configuration information such as the initial password)"
+msgstr "路径不要有空格；若文件不可用会自动创建（包含初始密码等配置信息）"
 
-msgid "Initial password"
-msgstr "初始密码"
+msgid "Enable SSL"
+msgstr "启用 SSL"
+
+msgid "Access via HTTPS"
+msgstr "使用 https 访问"
 
 msgid "SSL cert"
 msgstr "SSL 证书"
+
+msgid "SSL certificate file path"
+msgstr "SSL证书文件路径"
+
+msgid "SSL key file path"
+msgstr "SSL密钥文件路径"
 
 msgid "SSL key"
 msgstr "SSL 私钥"
@@ -43,8 +55,14 @@ msgstr "数据库路径"
 msgid "Root path"
 msgstr "指向路径"
 
-msgid "Point to a path to access your files in the web interface, default is /root"
-msgstr "指向一个路径，可在web界面访问你的文件，默认为 /root"
+msgid "Point to a path to access your files in the web interface, default is root directory /"
+msgstr "指向一个路径，可在web界面访问你的文件，默认为根目录 /"
+
+msgid "Other flags"
+msgstr "额外参数"
+
+msgid "Ensure that the current version supports. For example: --disableExec=false enables built-in shell (disabled by default since v2.33.8)"
+msgstr "要确保当前版本支持。例如：--disableExec=false 为开启命令执行功能（从v2.33.8默认禁用）"
 
 msgid "Executable directory"
 msgstr "可执行文件存放目录"
@@ -123,3 +141,15 @@ msgstr "客户端文件不适合当前设备。"
 
 msgid "Can't move new file to path: %s"
 msgstr "无法移动新文件到：%s"
+
+msgid "<strong>Download/Installation Notes:</strong>"
+msgstr "<strong>下载/安装 注意事项：</strong>"
+
+msgid "Solution: <br />1. Go to the <a href='https://github.com/filebrowser/filebrowser/releases' target='_blank'>official repository releases page</a>, use a download manager to download the compressed package for the corresponding architecture, then extract it and store the filebrowser executable in the specified directory.<br />2. If no external storage (such as a USB drive or hard disk) is available, you can try <a href='https://github.com/upx/upx/releases' target='_blank'>downloading UPX to compress the executable</a> to save space (but this will consume more RAM)."
+msgstr "解决办法：<br />1、跳转<a href=\'https://github.com/filebrowser/filebrowser/releases' target=\'_blank\'>到官方仓库releases页</a>用下载软件下载相应架构的压缩包，再解压把filebrowser存储到指定的目录。<br />2、若无U盘/硬盘等外置存储可用，可尝试<a href=\'https://github.com/upx/upx/releases' target=\'_blank\'>下载upx压缩可执行文件</a>节省空间（但会消耗更多RAM）。"
+
+msgid "The download button above depends on the package wget-ssl . A reliable and fast network connection to GitHub is required; otherwise, it is prone to report errors or timeouts"
+msgstr "上述下载按钮依赖软件包 wget-ssl ；与 GitHub 的网络连接要可靠快速，否则易报错超时"
+
+msgid "Pausing the automatic page refresh can facilitate copying text"
+msgstr "暂停页面自动刷新可方便复制"
