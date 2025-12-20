@@ -32,7 +32,11 @@ start_service() {
 	extrFlag=$(config_t_get global extrFlag)
 	executable_directory=$(config_t_get global executable_directory /tmp)
 
-	[ ! -f "$executable_directory/filebrowser" ] && echolog "指定的目录 $executable_directory 下没有二进制执行文件 filebrowser ，请先下载！" && return
+	[ ! -f "$executable_directory/filebrowser" ] && {
+		echolog "No binary executable file <filebrowser> found in the specified directory $executable_directory. Please download it first!"
+		echolog "指定的目录 $executable_directory 下没有二进制执行文件 filebrowser ，请先下载！"
+		return 1
+	}
 	[ -x "$executable_directory/filebrowser" ] || chmod 0755 "$executable_directory/filebrowser"
 	
 	# 服务启动是 procd 在函数退出后统一处理，启动后执行特定代码需子进程后台执行
@@ -46,6 +50,7 @@ start_service() {
 		str=$(grep 'password' $LOG_PATH |grep 'admin' |awk '{print $NF}')
 		sleep 1
 		done
+		echolog "It appears to be the first startup. Please change the initial password ${str} for the user admin promptly."
 		echolog "似乎是首次启动，请及时更改用户 admin 的初始密码 ${str}"
 		}
 	) &
