@@ -49,7 +49,7 @@ o.btnclick = "downloadClick(this);"
 o.id = "download_btn"
 
 o = s:option(DummyValue, "", translate("<strong>Download/Installation Notes:</strong>"), translate("Solution: <br />1. Go to the <a href='https://github.com/filebrowser/filebrowser/releases' target='_blank'>official repository releases page</a>, use a download manager to download the compressed package for the corresponding architecture, then extract it and store the filebrowser executable in the specified directory.<br />2. If no external storage (such as a USB drive or hard disk) is available, you can try <a href='https://github.com/upx/upx/releases' target='_blank'>downloading UPX to compress the executable</a> to save space (but this will consume more RAM)."))
-o.default = "The download button above depends on the package wget-ssl . A reliable and fast network connection to GitHub is required; otherwise, it is prone to report errors or timeouts"
+o.default = "上述下载按钮依赖软件包 wget-ssl ；与 GitHub 的网络连接要可靠快速，否则易报错超时（The download button above depends on the package wget-ssl . A reliable and fast network connection to GitHub is required; otherwise, it is prone to report errors or timeouts）"
 
 m:append(Template("filebrowser/log"))
 

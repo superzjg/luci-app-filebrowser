@@ -148,8 +148,5 @@ msgstr "<strong>下载/安装 注意事项：</strong>"
 msgid "Solution: <br />1. Go to the <a href='https://github.com/filebrowser/filebrowser/releases' target='_blank'>official repository releases page</a>, use a download manager to download the compressed package for the corresponding architecture, then extract it and store the filebrowser executable in the specified directory.<br />2. If no external storage (such as a USB drive or hard disk) is available, you can try <a href='https://github.com/upx/upx/releases' target='_blank'>downloading UPX to compress the executable</a> to save space (but this will consume more RAM)."
 msgstr "解决办法：<br />1、跳转<a href=\'https://github.com/filebrowser/filebrowser/releases' target=\'_blank\'>到官方仓库releases页</a>用下载软件下载相应架构的压缩包，再解压把filebrowser存储到指定的目录。<br />2、若无U盘/硬盘等外置存储可用，可尝试<a href=\'https://github.com/upx/upx/releases' target=\'_blank\'>下载upx压缩可执行文件</a>节省空间（但会消耗更多RAM）。"
 
-msgid "The download button above depends on the package wget-ssl . A reliable and fast network connection to GitHub is required; otherwise, it is prone to report errors or timeouts"
-msgstr "上述下载按钮依赖软件包 wget-ssl ；与 GitHub 的网络连接要可靠快速，否则易报错超时"
-
 msgid "Pausing the automatic page refresh can facilitate copying text"
 msgstr "暂停页面自动刷新可方便复制"
