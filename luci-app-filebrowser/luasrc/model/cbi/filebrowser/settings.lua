@@ -5,7 +5,7 @@ s = m:section(TypedSection, "global", translate("Global Settings"))
 s.anonymous = true
 s.addremove = false
 
-o = s:option(Flag, "enable", translate("Enable"), translate("<b>The initial password for user admin is a randomly generated password, which appears in the logs upon first startup;</b> for versions prior to v2.32.1, it is admin.<br>The default language is English (other languages can be selected in Settings - Profile Settings - Language, click UPDATE to change)"))
+o = s:option(Flag, "enable", translate("Enable"), translate("<b>The initial password for default user 'admin' is a randomly generated, which appears in the logs upon first startup.</b><br/>The default language is English (others can be selected in Settings - Profile Settings - Language, click UPDATE to change)"))
 o.rmempty = false
 
 o = s:option(Value, "address", translate("Listen address"))
@@ -27,10 +27,12 @@ o.default = "0"
 o = s:option(Value, "ssl_cert", translate("SSL cert"), translate("SSL certificate file path"))
 o.datatype = "file"
 o:depends("ssl", "1")
+o.rmempty = false
 
 o = s:option(Value, "ssl_key", translate("SSL key"), translate("SSL key file path"))
 o.datatype = "file"
 o:depends("ssl", "1")
+o.rmempty = false
 
 o = s:option(Value, "root_path", translate("Root path"), translate("Point to a path to access your files in the web interface, default is root directory /"))
 o.default = "/"
@@ -42,14 +44,11 @@ o = s:option(Value, "executable_directory", translate("Executable directory"), t
 o.default = "/tmp"
 o.rmempty = false
 
-o = s:option(Button, "_download", translate("Manually download"), translate("Make sure you have enough space. <br /><font style='color:red'>Be sure to fill out the executable storage directory the first time you run it, and then save the application. Then manually download, otherwise can not use!</font>"))
+o = s:option(Button, "_download", translate("Manually download"), translate("Make sure you have enough space. <br /><font style='color:red'>Be sure to fill out the executable storage directory the first time you run it, and then save the application. Then manually download, otherwise can not use!</font><br/>The download button above depends on the package 'wget-ssl'. Reliable and fast connection to GitHub is required; otherwise, it is prone to report errors or timeouts.<br/>Solution: <br/>1. Go to the <a href='https://github.com/filebrowser/filebrowser/releases' target='_blank'>official repository releases page</a>, use a download manager to download the compressed package for the corresponding architecture, then extract it and store the filebrowser executable in the specified directory.<br/>2. If no external storage (such as a USB drive or hard disk) is available, you can try <a href='https://github.com/upx/upx/releases' target='_blank'>download UPX to compress the executable</a> to save space (but this will consume more RAM)."))
 o.template = "filebrowser/download"
 o.inputstyle = "apply"
 o.btnclick = "downloadClick(this);"
 o.id = "download_btn"
-
-o = s:option(DummyValue, "", translate("<strong>Download/Installation Notes:</strong>"), translate("Solution: <br />1. Go to the <a href='https://github.com/filebrowser/filebrowser/releases' target='_blank'>official repository releases page</a>, use a download manager to download the compressed package for the corresponding architecture, then extract it and store the filebrowser executable in the specified directory.<br />2. If no external storage (such as a USB drive or hard disk) is available, you can try <a href='https://github.com/upx/upx/releases' target='_blank'>downloading UPX to compress the executable</a> to save space (but this will consume more RAM)."))
-o.default = "上述下载按钮依赖软件包 wget-ssl ；与 GitHub 的网络连接要可靠快速，否则易报错超时（The download button above depends on the package wget-ssl . A reliable and fast network connection to GitHub is required; otherwise, it is prone to report errors or timeouts）"
 
 m:append(Template("filebrowser/log"))
 

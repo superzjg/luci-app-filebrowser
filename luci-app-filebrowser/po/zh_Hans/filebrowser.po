@@ -19,8 +19,8 @@ msgstr "全局设置"
 msgid "Enable"
 msgstr "启用"
 
-msgid "<b>The initial password for user admin is a randomly generated password, which appears in the logs upon first startup;</b> for versions prior to v2.32.1, it is admin.<br>The default language is English (other languages can be selected in Settings - Profile Settings - Language, click UPDATE to change)"
-msgstr "<b>用户 admin 的初始密码是随机密码，首次启动时出现在日志中；</b>v2.32.1之前版本是 admin。<br>初始语言为英文 (可在Settings - Profile Settings - Language选择其他语言，点击 UPDATE 更改)"
+msgid "<b>The initial password for default user 'admin' is a randomly generated, which appears in the logs upon first startup.</b><br/>The default language is English (others can be selected in Settings - Profile Settings - Language, click UPDATE to change)"
+msgstr "<b>用户 admin 的初始密码是随机密码，首次启动时出现在日志中；</b><br/>初始语言为英文 (可在Settings - Profile Settings - Language选择其他语言，点击 UPDATE 更改)"
 
 msgid "Listen address"
 msgstr "监听地址"
@@ -72,9 +72,6 @@ msgstr "文件较大，至少需要32M空间。建议插入U盘或硬盘，或�
 
 msgid "Manually download"
 msgstr "手动下载"
-
-msgid "Make sure you have enough space. <br /><font style='color:red'>Be sure to fill out the executable storage directory the first time you run it, and then save the application. Then manually download, otherwise can not use!</font>"
-msgstr "请确保具有足够的空间。<br /><font style='color:red'>第一次运行务必填好项目存放目录，然后保存应用。再手动下载，否则无法使用！</font>"
 
 msgid "Logs"
 msgstr "日志"
@@ -145,8 +142,8 @@ msgstr "无法移动新文件到：%s"
 msgid "<strong>Download/Installation Notes:</strong>"
 msgstr "<strong>下载/安装 注意事项：</strong>"
 
-msgid "Solution: <br />1. Go to the <a href='https://github.com/filebrowser/filebrowser/releases' target='_blank'>official repository releases page</a>, use a download manager to download the compressed package for the corresponding architecture, then extract it and store the filebrowser executable in the specified directory.<br />2. If no external storage (such as a USB drive or hard disk) is available, you can try <a href='https://github.com/upx/upx/releases' target='_blank'>downloading UPX to compress the executable</a> to save space (but this will consume more RAM)."
-msgstr "解决办法：<br />1、跳转<a href=\'https://github.com/filebrowser/filebrowser/releases' target=\'_blank\'>到官方仓库releases页</a>用下载软件下载相应架构的压缩包，再解压把filebrowser存储到指定的目录。<br />2、若无U盘/硬盘等外置存储可用，可尝试<a href=\'https://github.com/upx/upx/releases' target=\'_blank\'>下载upx压缩可执行文件</a>节省空间（但会消耗更多RAM）。"
+msgid "Make sure you have enough space. <br /><font style='color:red'>Be sure to fill out the executable storage directory the first time you run it, and then save the application. Then manually download, otherwise can not use!</font><br/>The download button above depends on the package 'wget-ssl'. Reliable and fast connection to GitHub is required; otherwise, it is prone to report errors or timeouts.<br/>Solution: <br/>1. Go to the <a href='https://github.com/filebrowser/filebrowser/releases' target='_blank'>official repository releases page</a>, use a download manager to download the compressed package for the corresponding architecture, then extract it and store the filebrowser executable in the specified directory.<br/>2. If no external storage (such as a USB drive or hard disk) is available, you can try <a href='https://github.com/upx/upx/releases' target='_blank'>download UPX to compress the executable</a> to save space (but this will consume more RAM)."
+msgstr "请确保具有足够的空间。<br /><font style='color:red'>第一次运行务必填好项目存放目录，然后保存应用。再手动下载，否则无法使用！</font><br/>上述下载按钮依赖软件包 wget-ssl ；与 GitHub 的网络连接要可靠快速，否则易报错超时.<br/>解决办法：<br />1、跳转<a href=\'https://github.com/filebrowser/filebrowser/releases' target=\'_blank\'>到官方仓库releases页</a>用下载软件下载相应架构的压缩包，再解压把filebrowser存储到指定的目录。<br />2、若无U盘/硬盘等外置存储可用，可尝试<a href=\'https://github.com/upx/upx/releases' target=\'_blank\'>下载upx压缩可执行文件</a>节省空间（但会消耗更多RAM）。"
 
 msgid "Pausing the automatic page refresh can facilitate copying text"
 msgstr "暂停页面自动刷新可方便复制"
