@@ -34,8 +34,11 @@ start_service() {
 	executable_directory=$(config_t_get global executable_directory /tmp)
 
 	[ ! -f "$executable_directory/filebrowser" ] && {
-		echolog "---> No binary executable file <filebrowser> found in the specified directory $executable_directory. Please download it first!"
+		(
+		sleep 2
+		echolog "---> No binary executable file 'filebrowser' found in the specified directory $executable_directory. Please download first!"
 		echolog "---> 指定的目录 $executable_directory 下没有二进制执行文件 filebrowser ，请先下载！"
+		) &
 		return 1
 	}
 	[ -x "$executable_directory/filebrowser" ] || chmod 0755 "$executable_directory/filebrowser"
