@@ -1,7 +1,7 @@
 
 include $(TOPDIR)/rules.mk
 
-PKG_VERSION:=20251222
+PKG_VERSION:=20251221
 PKG_RELEASE:=1
 PKG_NAME:=luci-app-filebrowser
 
