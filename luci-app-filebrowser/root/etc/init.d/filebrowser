@@ -18,6 +18,33 @@ config_t_get() {
 	local ret=$(uci get filebrowser.@$1[$index].$2 2>/dev/null)
 	echo ${ret:=$3}
 }
+allow_wan=$(config_t_get global allow_wan 0)
+firewall_set=$(config_t_get global firewall_set force)
+
+set_firewall() {
+	if [ "$external_access" = "allow" ]; then
+		[ "$firewall_set" == "no" ] && return 0
+		if [ "$firewall_set" == "check" ] && [ "$(uci -q get firewall.filebrowser_auto.proto)" == "tcp" ];then
+			[ "$PORT" == "$(uci -q get firewall.filebrowser_auto.dest_port)" ] && return 0
+		fi
+		uci -q delete firewall.filebrowser_auto
+		uci set firewall.filebrowser_auto=rule
+		uci set firewall.filebrowser_auto.name="filebrowser_auto"
+		uci set firewall.filebrowser_auto.target="ACCEPT"
+		uci set firewall.filebrowser_auto.src="wan"
+		uci set firewall.filebrowser_auto.proto="tcp"
+		uci set firewall.filebrowser_auto.dest_port="$PORT"
+		uci set firewall.filebrowser_auto.enabled="1"
+		uci commit firewall
+		/etc/init.d/firewall reload >/dev/null 2>&1
+	elif [ "$external_access" = "deny" ]; then
+		if [ -n "$(uci -q show firewall.filebrowser_auto)" ]; then
+			uci -q delete firewall.filebrowser_auto
+			uci commit firewall
+			/etc/init.d/firewall reload >/dev/null 2>&1
+		fi   
+	fi
+}
 
 start_service() {
 	ENABLED=$(config_t_get global enable 0)
@@ -63,6 +90,9 @@ start_service() {
 	if [ $SSL -eq 1 ];then
 		[ -n "$SSL_CERT" ] && [ -n "$SSL_KEY" ] && SSL_PARAMS="-t $SSL_CERT -k $SSL_KEY"
 	fi
+	[ "$allow_wan" -eq "1" ] && external_access="allow" || external_access="deny"
+	set_firewall
+	
 	procd_open_instance filebrowser
 	procd_set_param command /bin/sh
 	procd_append_param command -c "exec $executable_directory/filebrowser -a $ADDRESS -p $PORT -r $ROOT_PATH -d $DATABASE $SSL_PARAMS $extrFlag >> $LOG_PATH 2>&1"
@@ -75,5 +105,14 @@ service_triggers() {
 }
 
 stop_service() {
-	rm -rf $LOG_PATH
+	# rm -rf $LOG_PATH
+	[ "$allow_wan" != "1" -o "$firewall_set" == "force" ] && external_access="deny"
+	set_firewall
+}
+
+# 重定义reload否则可能不执行stop_service
+reload_service() {
+	stop
+	sleep 1
+	start
 }

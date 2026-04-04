@@ -8,7 +8,7 @@ s.addremove = false
 o = s:option(Flag, "enable", translate("Enable"), translate("<b>The initial password for default user 'admin' is a randomly generated, which appears in the logs upon first startup.</b><br/>The default language is English (others can be selected in Settings - Profile Settings - Language, click UPDATE to change)"))
 o.rmempty = false
 
-o = s:option(Value, "address", translate("Listen address"))
+o = s:option(Value, "address", translate("Listen address"), translate("0.0.0.0 means all addresses，configuring an private address will block internet access"))
 o.default = "0.0.0.0"
 o.rmempty = false
 
@@ -34,6 +34,16 @@ o.datatype = "file"
 o:depends("ssl", "1")
 o.rmempty = false
 
+o = s:option(Flag, "allow_wan", translate("Allow Access From Internet"))
+o.default = "0"
+
+o = s:option(ListValue, "firewall_set", translate("Firewall rules"), translate("Force: Delete and recreate on service start, delete on service stop (default)<br/>Check: Create on service start if none exist; do not delete on service stop"))
+o:value("no", translate("Do not set"))
+o:value("check", translate("Check"))
+o:value("force", translate("Force"))
+o.default = "force"
+o:depends("allow_wan", "1")
+
 o = s:option(Value, "root_path", translate("Root path"), translate("Point to a path to access your files in the web interface, default is root directory /"))
 o.default = "/"
 o.rmempty = false
@@ -44,7 +54,7 @@ o = s:option(Value, "executable_directory", translate("Executable directory"), t
 o.default = "/tmp"
 o.rmempty = false
 
-o = s:option(Button, "_download", translate("Manually download"), translate("Make sure you have enough space. <br/><font style='color:red'>Be sure to fill out the executable storage directory the first time you run it, and then save the application. Then manually download, otherwise can not use!</font><br/>The download button above depends on the package 'wget-ssl'. Reliable and fast connection to GitHub is required; otherwise, it is prone to report errors or timeouts.<br/>Solution: <br/>1. Go to the <a href='https://github.com/filebrowser/filebrowser/releases' target='_blank'>official repository releases page</a>, use a download manager to download the compressed package for the corresponding architecture, then extract it and store the filebrowser executable in the specified directory.<br/>2. If no external storage (USB drive or hard disk) is available, you can try <a href='https://github.com/upx/upx/releases' target='_blank'>download UPX to compress the executable</a> to save space (but this will consume more RAM)."))
+o = s:option(Button, "_download", translate("Manually download"), translate("Make sure you have enough space. <br/><font style='color:red'>Be sure to fill out the executable storage directory the first time you run it, and then save the application. Then manually download, otherwise can not use!</font><br/>The download button above depends on the package 'wget-ssl'. Reliable and fast connection to GitHub is required; otherwise, it is prone to report errors or timeouts.<br/>Solution: <br/>1. Go to the <a href='https://github.com/filebrowser/filebrowser/releases' target='_blank'>official repository releases page</a>, use a download manager to download the compressed package for the corresponding architecture, then extract it and store the 'filebrowser' executable in the specified directory.<br/>2. If no external storage (USB drive or hard disk) is available, you can try <a href='https://github.com/upx/upx/releases' target='_blank'>download UPX to compress the executable</a> to save space (but this will consume more RAM)."))
 o.template = "filebrowser/download"
 o.inputstyle = "apply"
 o.btnclick = "downloadClick(this);"
