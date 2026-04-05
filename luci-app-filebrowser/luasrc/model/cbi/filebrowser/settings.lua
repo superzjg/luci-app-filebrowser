@@ -32,15 +32,10 @@ o = s:option(Value, "ssl_key", translate("SSL key"), translate("SSL key file pat
 o.datatype = "file"
 o:depends("ssl", "1")
 
-o = s:option(Flag, "allow_wan", translate("Allow Access From Internet"))
-o.default = "0"
-
-o = s:option(ListValue, "firewall_set", translate("Firewall rules"), translate("Force: Delete and recreate on service start, delete on service stop (default)<br/>Check: Create on service start if none exist; do not delete on service stop"))
+o = s:option(ListValue, "firewall_set", translate("Firewall rules"), translate("Force: Delete and recreate on service start, delete on service stop<br/>Check: Create on service start if none exist; do not delete on service stop"))
 o:value("no", translate("Do not set"))
 o:value("check", translate("Check"))
 o:value("force", translate("Force"))
-o.default = "force"
-o:depends("allow_wan", "1")
 
 o = s:option(Value, "root_path", translate("Root path"), translate("Point to a path to access your files in the web interface, default is root directory /"))
 o.default = "/"
