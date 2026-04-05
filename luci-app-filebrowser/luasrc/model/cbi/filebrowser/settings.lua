@@ -27,12 +27,10 @@ o.default = "0"
 o = s:option(Value, "ssl_cert", translate("SSL cert"), translate("SSL certificate file path"))
 o.datatype = "file"
 o:depends("ssl", "1")
-o.rmempty = false
 
 o = s:option(Value, "ssl_key", translate("SSL key"), translate("SSL key file path"))
 o.datatype = "file"
 o:depends("ssl", "1")
-o.rmempty = false
 
 o = s:option(Flag, "allow_wan", translate("Allow Access From Internet"))
 o.default = "0"
