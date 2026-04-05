@@ -18,7 +18,7 @@ config_t_get() {
 	local ret=$(uci get filebrowser.@$1[$index].$2 2>/dev/null)
 	echo ${ret:=$3}
 }
-firewall_set=$(config_t_get global firewall_set force)
+firewall_set=$(config_t_get global firewall_set no)
 
 add_firewall() {
 	if [ "$firewall_set" != "no" ]; then
