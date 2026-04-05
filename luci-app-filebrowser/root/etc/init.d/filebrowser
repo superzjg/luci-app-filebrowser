@@ -18,15 +18,11 @@ config_t_get() {
 	local ret=$(uci get filebrowser.@$1[$index].$2 2>/dev/null)
 	echo ${ret:=$3}
 }
-allow_wan=$(config_t_get global allow_wan 0)
 firewall_set=$(config_t_get global firewall_set force)
 
-set_firewall() {
-	if [ "$external_access" = "allow" ]; then
-		[ "$firewall_set" == "no" ] && return 0
-		if [ "$firewall_set" == "check" ] && [ "$(uci -q get firewall.filebrowser_auto.proto)" == "tcp" ];then
-			[ "$PORT" == "$(uci -q get firewall.filebrowser_auto.dest_port)" ] && return 0
-		fi
+add_firewall() {
+	if [ "$firewall_set" != "no" ]; then
+		[ "$firewall_set" == "check" ] && [ -n "$(uci -q show firewall.filebrowser_auto)" ] && return 0
 		uci -q delete firewall.filebrowser_auto
 		uci set firewall.filebrowser_auto=rule
 		uci set firewall.filebrowser_auto.name="filebrowser_auto"
@@ -37,7 +33,10 @@ set_firewall() {
 		uci set firewall.filebrowser_auto.enabled="1"
 		uci commit firewall
 		/etc/init.d/firewall reload >/dev/null 2>&1
-	elif [ "$external_access" = "deny" ]; then
+	fi
+}
+del_firewall() {
+	if [ "$firewall_set" != "check" ]; then
 		if [ -n "$(uci -q show firewall.filebrowser_auto)" ]; then
 			uci -q delete firewall.filebrowser_auto
 			uci commit firewall
@@ -90,8 +89,7 @@ start_service() {
 	if [ $SSL -eq 1 ];then
 		[ -n "$SSL_CERT" ] && [ -n "$SSL_KEY" ] && SSL_PARAMS="-t $SSL_CERT -k $SSL_KEY"
 	fi
-	[ "$allow_wan" -eq "1" ] && external_access="allow" || external_access="deny"
-	set_firewall
+	add_firewall
 	
 	procd_open_instance filebrowser
 	procd_set_param command /bin/sh
@@ -106,13 +104,10 @@ service_triggers() {
 
 stop_service() {
 	# rm -rf $LOG_PATH
-	[ "$allow_wan" != "1" -o "$firewall_set" == "force" ] && external_access="deny"
-	set_firewall
+	del_firewall
 }
 
-# 重定义reload否则可能不执行stop_service
+# 重定义reload否则不执行stop_service
 reload_service() {
-	stop
-	sleep 1
-	start
+	restart
 }
